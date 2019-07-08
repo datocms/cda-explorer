@@ -55,7 +55,7 @@ const Explorer = () => {
         onRunOperation={operationName => {
           graphiql.current.handleRunQuery(operationName);
         }}
-        explorerIsOpen={explorerIsOpen}
+        explorerIsOpen={queryString.embed ? false : explorerIsOpen}
         onToggleExplorer={() => setExplorerIsOpen(!explorerIsOpen)}
       />
       <GraphiQl
