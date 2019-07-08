@@ -46,6 +46,8 @@ const Explorer = () => {
     };
   }, [previewMode, queryString.apitoken]);
 
+  const isEmbed = 'embed' in queryString;
+
   return (
     <div className="graphiql-container">
       <GraphiQLExplorer
@@ -55,7 +57,7 @@ const Explorer = () => {
         onRunOperation={operationName => {
           graphiql.current.handleRunQuery(operationName);
         }}
-        explorerIsOpen={queryString.embed ? false : explorerIsOpen}
+        explorerIsOpen={isEmbed ? false : explorerIsOpen}
         onToggleExplorer={() => setExplorerIsOpen(!explorerIsOpen)}
       />
       <GraphiQl
@@ -74,21 +76,27 @@ const Explorer = () => {
         }
       >
         <GraphiQl.Toolbar>
-          <GraphiQl.Button
-            onClick={() => setExplorerIsOpen(!explorerIsOpen)}
-            title="Explorer"
-            label="Explorer"
-          />
+          {
+            !isEmbed &&
+              <GraphiQl.Button
+                onClick={() => setExplorerIsOpen(!explorerIsOpen)}
+                title="Explorer"
+                label="Explorer"
+              />
+          }
           <GraphiQl.Button
             onClick={value => graphiql.current.handlePrettifyQuery()}
             title="Prettify Query (Shift-Ctrl-P)"
             label="Prettify"
           />
-          <GraphiQl.Button
-            onClick={value => graphiql.current.handleToggleHistory()}
-            title="Show History"
-            label="History"
-          />
+          {
+            !isEmbed &&
+              <GraphiQl.Button
+                onClick={value => graphiql.current.handleToggleHistory()}
+                title="Show History"
+                label="History"
+              />
+          }
           <GraphiQl.Select
             onSelect={value => {
               setPreviewMode(value);
