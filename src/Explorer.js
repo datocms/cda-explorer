@@ -9,6 +9,14 @@ import {
   introspectionQueryName
 } from 'graphiql/dist/utility/introspectionQueries';
 
+function inIframe () {
+  try {
+    return window.self !== window.top;
+  } catch (e) {
+    return true;
+  }
+}
+
 const Explorer = () => {
   const [queryString, setQueryString] = useQueryString();
   const [fetcher, setFetcher] = useState(() => () => {});
@@ -46,7 +54,7 @@ const Explorer = () => {
     };
   }, [previewMode, queryString.apitoken]);
 
-  const isEmbed = 'embed' in queryString;
+  const isEmbed = inIframe();
 
   return (
     <div className="graphiql-container">
