@@ -1,7 +1,7 @@
 export default async (previewMode, apiToken, body) => {
-  var url = previewMode
-    ? `${process.env.REACT_APP_CDA_BASE_URL}/preview?apitoken=${apiToken}`
-    : `${process.env.REACT_APP_CDA_BASE_URL}/?apitoken=${apiToken}`;
+  const url = previewMode
+    ? `${process.env.REACT_APP_CDA_BASE_URL}/?apitoken=${apiToken}`
+    : `${process.env.REACT_APP_CDA_BASE_URL}/preview?apitoken=${apiToken}`;
 
   const response = await fetch(url, {
     method: "post",
