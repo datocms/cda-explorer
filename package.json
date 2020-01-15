@@ -2,7 +2,7 @@
   "name": "cda-explorer",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://graphiql.datocms.com/",
+  "homepage": "https://cda-explorer.datocms.com/",
   "dependencies": {
     "graphiql": "^0.13.2",
     "graphiql-explorer": "^0.4.3",
